@@ -1,13 +1,18 @@
 package cz.czechitas.java2webapps.ukol6.controller;
 
+import cz.czechitas.java2webapps.ukol6.entity.Vizitka;
 import cz.czechitas.java2webapps.ukol6.repository.VizitkaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class VizitkaController {
@@ -27,5 +32,16 @@ public class VizitkaController {
     public ModelAndView seznam() {
         return new ModelAndView("seznam")
                 .addObject("seznam", repository.findAll());
+    }
+
+    @GetMapping("/{id:[0-9]+}")
+    public Object detail(@PathVariable Integer id) {
+        Optional<Vizitka> vizitka = repository.findById(id);
+        if (vizitka.isPresent()) {
+            return new ModelAndView("detail")
+                    .addObject("vizitka", vizitka.get());
+        }
+        System.out.println("error");
+        return ResponseEntity.notFound().build();
     }
 }
