@@ -37,7 +37,7 @@ public class VizitkaController {
     @GetMapping("/nova")
     public ModelAndView nova() {
         return new ModelAndView("formular")
-                .addObject("formular", new Vizitka());
+                .addObject("vizitka", new Vizitka());
     }
 
     @PostMapping("/nova")
