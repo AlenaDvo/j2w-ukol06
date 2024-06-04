@@ -38,10 +38,9 @@ public class VizitkaController {
     public Object detail(@PathVariable Integer id) {
         Optional<Vizitka> vizitka = repository.findById(id);
         if (vizitka.isPresent()) {
-            return new ModelAndView("detail")
+            return new ModelAndView("vizitka")
                     .addObject("vizitka", vizitka.get());
         }
-        System.out.println("error");
         return ResponseEntity.notFound().build();
     }
 }
