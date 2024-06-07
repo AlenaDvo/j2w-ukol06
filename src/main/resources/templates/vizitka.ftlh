@@ -23,5 +23,5 @@
         </div>
 
         [@c.back /]
-    </div>
+[#--    </div>--]
 [/@c.page]
