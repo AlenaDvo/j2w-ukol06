@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -14,23 +15,23 @@ public class Vizitka {
     private Integer id;
 
     @Length(max = 100)
-    @NotBlank
+    @NotBlank(message = "Prosím zadejte celé jméno.")
     private String celeJmeno;
 
     @Length(max = 100)
-    @NotBlank
+    @NotBlank(message = "Prosím zadejte svou firmu.")
     private String firma;
 
     @Length(max = 100)
-    @NotBlank
+    @NotBlank(message = "Prosím zadejte ulici a číslo popisné.")
     private String ulice;
 
     @Length(max = 100)
-    @NotBlank
+    @NotBlank(message = "Prosím zadejte obec.")
     private String obec;
 
-    @Length(max = 5)
-    @NotBlank
+    @Pattern(regexp = "\\d{5}")
+    @NotBlank(message = "Prosím zadejte PSČ ve formě 11111.")
     private String psc;
 
     @Length(max = 100)
