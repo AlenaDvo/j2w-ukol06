@@ -23,5 +23,14 @@
         </div>
 
         [@c.back /]
-[#--    </div>--]
+
+        <nav>
+            <a href="/${vizitka.id}/upravit"><button type="submit" class="btn btn-light">Upravit</button></a>
+        </nav>
+
+        <nav>
+            <a href="/${vizitka.id}/smazat"><button type="submit" class="btn btn-light" name="akce" value="smazat">Smazat</button></a>
+[#--            <a href="/"><div name="akce"></div>x smazat</a>--]
+        </nav>
+    </div>
 [/@c.page]

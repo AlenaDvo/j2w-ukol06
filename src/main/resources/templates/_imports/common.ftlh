@@ -20,6 +20,15 @@
 
 [#macro back]
     <nav>
-        <a href="/">◂ zpět na seznam</a>
+        <button class="btn btn-light"><a href="/">◂ zpět na seznam</a></button>
     </nav>
 [/#macro]
+
+
+[#macro delete]
+    <nav>
+        <a href="/">x smazat</a>
+    </nav>
+[/#macro]
+
+

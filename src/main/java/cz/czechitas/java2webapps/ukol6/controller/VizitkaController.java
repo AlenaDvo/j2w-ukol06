@@ -58,4 +58,29 @@ public class VizitkaController {
         }
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/{id:[0-9]+}/upravit")
+    public Object upravit(@PathVariable Integer id) {
+        Optional<Vizitka> vizitka = repository.findById(id);
+        if (vizitka.isPresent()) {
+            return new ModelAndView("formular")
+                    .addObject("vizitka", vizitka.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/{id:[0-9]+}/upravit")
+    public Object ulozit(@PathVariable Integer id, @ModelAttribute("vizitka") @Valid Vizitka vizitka, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "formular";
+        }
+        repository.save(vizitka);
+        return new ModelAndView("vizitka")
+                .addObject("vizitka", vizitka);
+    }
+
+    @GetMapping(value = "/{id:[0-9]+}/smazat")
+    public String smazat(@PathVariable Integer id) {
+        repository.deleteById(id);
+        return "redirect:/";
+    }
 }
