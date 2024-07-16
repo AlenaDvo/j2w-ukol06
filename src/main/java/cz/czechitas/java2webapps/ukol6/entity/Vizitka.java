@@ -4,9 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 public class Vizitka {
@@ -34,11 +36,15 @@ public class Vizitka {
     @NotBlank(message = "Prosím zadejte PSČ ve formě 11111.")
     private String psc;
 
+    @Email
     @Length(max = 100)
     private String email;
 
+    @Pattern(regexp = "\\d{9}")
     @Length(max = 20)
     private String telefon;
+
+    @URL
     @Length(max = 100)
     private String web;
 
